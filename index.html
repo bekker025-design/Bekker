@@ -114,6 +114,13 @@
       background:var(--primary);
       color:#fff;
     }
+    .btn.call{
+      background:#28a745;
+      color:white;
+    }
+    .btn.call:hover{
+      background:#218838;
+    }
 
     /* Форма справа */
     .lead-card{
@@ -187,15 +194,40 @@
     }
 
     footer{
-      padding:30px;
+      padding:40px 30px;
       text-align:center;
       background:#f7f7f7;
       color:var(--muted);
       font-size:14px;
     }
+    .footer-contacts{
+      max-width: 500px;
+      margin: 0 auto 20px;
+    }
+    .contact-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .contact-item h4{
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .contact-item a{
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .contact-item a:hover{
+      color: var(--primary);
+    }
 
     @media(max-width:900px){
       .hero{grid-template-columns:1fr}
+      header{flex-direction:column; gap:15px}
+      .contact-grid{grid-template-columns:1fr; text-align:center}
     }
   </style>
 </head>
@@ -209,7 +241,11 @@
         <a href="#">Услуги</a>
         <a href="#">Контакты</a>
       </nav>
-      <div class="phone">+7 (999) 123-45-67</div>
+      <div class="phone">
+        <a href="tel:+79196967717" style="color: var(--primary); text-decoration: none; font-weight: 700;">
+          +7 (919) 696-77-17
+        </a>
+      </div>
     </header>
 
     <!-- HERO -->
@@ -220,6 +256,7 @@
         <div class="cta-row">
           <button class="btn" onclick="openModal('audit')">Бесплатный аудит</button>
           <button class="btn ghost" onclick="scrollToCases()">Примеры работ</button>
+          <button class="btn call" onclick="window.location.href='tel:+79196967717'">📞 Позвонить нам</button>
         </div>
       </div>
       <aside class="lead-card">
@@ -300,7 +337,28 @@
     </div>
 
     <footer>
-      © <span id="year"></span> ГЕОЗЕМ — юридическая компания
+      <div class="footer-contacts">
+        <div class="contact-grid">
+          <div class="contact-item">
+            <h4>Контакты</h4>
+            <p>
+              <a href="tel:+79196967717">+7 (919) 696-77-17</a><br>
+              <a href="mailto:bekker025@mail.ru">bekker025@mail.ru</a>
+            </p>
+          </div>
+          <div class="contact-item">
+            <h4>Адрес</h4>
+            <p>г. Казань,<br>ул. Ершова, д. 1А</p>
+          </div>
+          <div class="contact-item">
+            <h4>Время работы</h4>
+            <p>Пн-Пт: 9:00 - 18:00<br>Сб-Вс: выходной</p>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid #ddd; padding-top: 15px;">
+        © <span id="year"></span> ГЕОЗЕМ — юридическая компания
+      </div>
     </footer>
   </div>
 

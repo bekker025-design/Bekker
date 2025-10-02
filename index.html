@@ -222,20 +222,20 @@
   <button class="btn ghost" onclick="scrollToCases()">Примеры работ</button>
 </div>
       </div>
-      <aside class="lead-card">
-        <h3>Закажите аудит объекта</h3>
-        <form>
-          <input type="text" placeholder="Ваше имя" required>
-          <input type="tel" placeholder="Телефон" required>
-          <select>
-            <option>Выберите объект</option>
-            <option>Склад</option>
-            <option>Производство</option>
-          </select>
-          <textarea rows="3" placeholder="Краткая информация"></textarea>
-          <button class="btn">Отправить</button>
-        </form>
-      </aside>
+     <aside class="lead-card">
+  <h3>Закажите аудит объекта</h3>
+  <form onsubmit="submitForm(event)">
+    <input type="text" placeholder="Ваше имя" required id="name">
+    <input type="tel" placeholder="Телефон" required id="phone">
+    <select id="object-type">
+      <option>Выберите объект</option>
+      <option>Склад</option>
+      <option>Производство</option>
+    </select>
+    <textarea rows="3" placeholder="Краткая информация" id="message"></textarea>
+    <button type="submit" class="btn">Отправить</button>
+  </form>
+</aside>
     </section>
 
     <!-- Features -->
@@ -305,7 +305,83 @@
   </div>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+ <aside class="lead-card">
+  <h3>Закажите аудит объекта</h3>
+  <form onsubmit="submitForm(event)">
+    <input type="text" placeholder="Ваше имя" required id="name">
+    <input type="tel" placeholder="Телефон" required id="phone">
+    <select id="object-type">
+      <option>Выберите объект</option>
+      <option>Склад</option>
+      <option>Производство</option>
+    </select>
+    <textarea rows="3" placeholder="Краткая информация" id="message"></textarea>
+    <button type="submit" class="btn">Отправить</button>
+  </form>
+</aside>
+Шаг 6: Добавьте JavaScript
+Прокрутите в самый конец файла, найдите:
+
+html
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
+Шаг 7: Замените весь скрипт
+Удалите старый скрипт и вставьте новый:
+
+html
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Функция для плавной прокрутки к примерам работ
+  function scrollToCases() {
+    document.querySelector('.cases').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  // Функция отправки формы
+  function submitForm(event) {
+    event.preventDefault(); // Останавливаем стандартную отправку формы
+    
+    // Получаем данные из формы
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const objectType = document.getElementById('object-type').value;
+    const message = document.getElementById('message').value;
+    
+    // Здесь можно отправить данные на сервер
+    // Пока просто покажем сообщение
+    alert(`Спасибо, ${name}! Ваша заявка принята. Мы свяжемся с вами по номеру ${phone} в ближайшее время.`);
+    
+    // Очищаем форму
+    document.getElementById('name').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('object-type').selectedIndex = 0;
+    document.getElementById('message').value = '';
+  }
+
+  // Функция для бесплатного аудита (можно расширить)
+  function openModal(type) {
+    if (type === 'audit') {
+      alert("Для бесплатного аудита заполните форму справа или позвоните нам!");
+    }
+  }
+
+  // Добавляем обработчики для карточек примеров
+  document.addEventListener('DOMContentLoaded', function() {
+    const cases = document.querySelectorAll('.case');
+    cases.forEach(caseItem => {
+      caseItem.style.cursor = 'pointer';
+      caseItem.addEventListener('click', function() {
+        const title = this.querySelector('h5').textContent;
+        alert(`Подробная информация по объекту: ${title}`);
+      });
+    });
+  });
+</script>
 </body>
 </html>
 
